@@ -6,8 +6,10 @@
 export PATH=/home/mwhall/Software/TaxAss/tax-scripts/:$PATH
 cd TaxAss
 gunzip *.gz
-cp ../seq.unique.fasta otus.fasta
-sed -i 's/;size=[0-9]*//g' otus.fasta
+#cp ../seq.unique.fasta otus.fasta
+#For the full sequence run:
+cp ../seq.unique.full.min100.fasta otus.fasta
+sed -i 's/;size=[0-9]*;//g' otus.fasta
 makeblastdb -dbtype nucl -in custom.fasta -input_type fasta -parse_seqids -out custom.db
 blastn -query otus.fasta -task megablast -db custom.db -out otus.custom.blast -outfmt 11 -max_target_seqs 5
 blast_formatter -archive otus.custom.blast -outfmt "6 qseqid pident length qlen qstart qend" -out otus.custom.blast.table
@@ -34,6 +36,8 @@ Rscript find_classification_disagreements.R otus.98.taxonomy otus.general.taxono
 cp final.taxonomy.names temp
 sed -i 's/,/\t/' temp
 sed -i 's/,/;/g' temp
-tail -n +2 temp > taxonomy.txt
+#tail -n +2 temp > taxonomy.txt
+#For the full sequence run:
+tail -n +2 temp > taxonomy_full.txt
 rm temp
 gzip *.fasta
