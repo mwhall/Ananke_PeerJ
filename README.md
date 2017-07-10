@@ -20,14 +20,16 @@ Data is from the North Temperate Lakes Long-term Ecological Research Network (ht
 
 Scripts are found in the `McMahon_Mendota` directory. There are 4 scripts that must be run in the presented order:
 
-* fetchData.sh
-...BASH script that communicates with EBI to download the .fastq.gz files directly, as well as all associated sample metadata.
-* runDADA2.R
-...R script that runs `DADA2` v1.4 to denoise the sequences, remove PhiX, and filter out bimeras.
-* fixDates.R
-...R script that uses `lubridate` to convert the dates in the metadata to integer offsets from the earliest date (a requirement for Ananke v0.3). It also removes low sequence-depth samples from the metadata file, which excludes them from the Ananke analysis.
-* Ananke.sh
-...BASH script that runs the Ananke commands to import DADA2 results, cluster, and then import the taxonomic classifications and the sequence-identity clusters.
+* `fetchData.sh`
+   * BASH script that communicates with EBI to download the .fastq.gz files directly, as well as all associated sample metadata.
+* `runDADA2.R`
+   * R script that runs `DADA2` v1.4 to denoise the sequences, remove PhiX, and filter out bimeras.
+* `fixDates.R`
+   * R script that uses `lubridate` to convert the dates in the metadata to integer offsets from the earliest date (a requirement for Ananke v0.3). It also removes low sequence-depth samples from the metadata file, which excludes them from the Ananke analysis.
+* `TaxAss.sh`
+   * Runs the TaxAss pipeline with FreshTrain to classify the sequences from DADA2. See https://github.com/McMahonLab/TaxAss for more information. Pre-computed taxonomic classifications are given in taxonomy.txt.
+* `Ananke.sh`
+   * BASH script that runs the Ananke commands to import DADA2 results, cluster, and then import the taxonomic classifications and the sequence-identity clusters.
 
 # Stool
 
@@ -35,9 +37,9 @@ Data is from David _et al._, 2014 (https://genomebiology.biomedcentral.com/artic
 
 Scripts are found in the `Alm_Stool` directory. There are 3 scripts that must be run in the presented order:
 
-* fetchData.sh
-...BASH script that communicates with EBI to download the .fastq.gz files directly, as well as all associated sample metadata.
-* runDADA2.R
-...R script that runs `DADA2` v1.4 to denoise the sequences, remove PhiX, and filter out bimeras.
-* Ananke.sh
-...BASH script that runs the Ananke commands to import DADA2 results, cluster, and then import the taxonomic classifications and the sequence-identity clusters.
+* `fetchData.sh`
+   * BASH script that communicates with EBI to download the .fastq.gz files directly, as well as all associated sample metadata.
+* `runDADA2.R`
+   * R script that runs `DADA2` v1.4 to denoise the sequences, remove PhiX, and filter out bimeras.
+* `Ananke.sh`
+   * BASH script that runs the Ananke commands to import DADA2 results, cluster, and then import the taxonomic classifications and the sequence-identity clusters.
